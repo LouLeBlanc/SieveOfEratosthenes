@@ -58,9 +58,9 @@
             <classpath refid="Sieve Of Eratosthenes.classpath"/>
         </javac>
     </target>
-    <target name="dist" depends="SieveOfEratosthenesTest">
+    <target name="dist" depends="SieveOfEratosthenesTest,junitreport">
         <echo message="Executing Distribution buid target for ${ant.project.name}"/>
-        <jar jarfile="dist/lib/SNAPSHOT-SieveOfEratosthenes-${DSTAMP}.jar" basedir="bin"/>
+        <jar jarfile="dist/lib/SieveOfEratosthenes-${DSTAMP}.jar" basedir="bin"/>
    </target>
    <target name="SieveOfEratosthenesTest" depends="build">
         <echo message="Running JUnit tests for ${ant.project.name}"/>
@@ -70,7 +70,7 @@
             <test name="SieveOfEratosthenesTest" methods="testGetUpperBound, testIsPrime"/>
         </junit>
     </target>
-    <target name="junitreport">
+    <target name="junitreport" depends="SieveOfEratosthenesTest">
     	<echo message="Generating JUnit tests for ${ant.project.name}"/>
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
