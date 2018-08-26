@@ -65,20 +65,19 @@
         <junit printsummary="on" haltonerror="on" logfailedtests="true">
             <formatter type="xml"/>
             <classpath refid="SieveOfEratosthenes.classpath"/>
-            <test name="SieveOfEratosthenesTest" methods="testGetUpperBound, testIsPrime"/>
+            <test name="SieveOfEratosthenesTest"
+            	methods="testGetUpperBound, testIsPrime"
+            todir="${junit.output.dir}"/>
         </junit>
     </target>
     <target name="junitreport" depends="SieveOfEratosthenesTest">
     	<echo message="Generating JUnit tests for ${ant.project.name}"/>
         <junitreport todir="${junit.output.dir}">
-            <fileset dir="${basedir}">
+            <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
             </fileset>
             <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
-        <delete>
-          <fileset dir="." includes="TEST-*.xml"/>
-        </delete>
     </target>
 	<target name="run" depends="dist">
 		<echo message="Running $jarfile} with the default input (300)"/>
