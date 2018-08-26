@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <project basedir="." default="build" name="Sieve Of Eratosthenes">
+    <property environment="env."/>
+    <property name="env.CLASSPATH" value=""/>
+    <fail message="Unset $CLASSPATH / %CLASSPATH% before running Ant!">
+        <condition>
+            <not>
+                <equals arg1="${env.CLASSPATH}" arg2=""/>
+            </not>
+        </condition>
+    </fail>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
@@ -27,42 +36,41 @@
     </path>
     <target name="init">
         <mkdir dir="bin"/>
+        <mkdir dir="dist/lib"/>
+        <mkdir dir="${junit.output.dir}"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
+        <tstamp/>
     </target>
     <target name="clean">
+    	<echo message="Cleaning ${ant.project.name} build environment"/>
         <delete dir="bin"/>
-    	<delete dir="junit"/>
+        <delete dir="junit"/>
+        <delete dir="dist"/>
     </target>
     <target depends="init" name="build">
-        <echo message="${ant.project.name}: ${ant.file}"/>
+        <echo message="Executing Build target for ${ant.project.name}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="Sieve Of Eratosthenes.classpath"/>
         </javac>
     </target>
-    <target name="SieveOfEratosthenesTest.testIsPrime">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="SieveOfEratosthenesTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
+    <target name="dist" depends="build">
+        <echo message="Executing Distribution buid target for ${ant.project.name}"/>
+        <jar jarfile="dist/lib/SNAPSHOT-${DSTAMP}.jar" basedir="bin"/>
+   </target>
+    <target name="SieveOfEratosthenesTest" depends="dist">
+        <echo message="Running JUnit tests for ${ant.project.name}"/>
+        <junitlauncher>
             <classpath refid="Sieve Of Eratosthenes.classpath"/>
-        </junit>
-    </target>
-    <target name="SieveOfEratosthenesTest.testSieveOfEratosthenes">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="SieveOfEratosthenesTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="Sieve Of Eratosthenes.classpath"/>
-        </junit>
+            <test name="SieveOfEratosthenesTest" methods="testGetUpperBound, testIsPrime" outputDir="${junit.output.dir}"/>
+        </junitlauncher>
     </target>
     <target name="junitreport">
+    	<echo message="Generating JUnit tests for ${ant.project.name}"/>
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>

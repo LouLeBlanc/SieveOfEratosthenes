@@ -1,3 +1,4 @@
+package edu.brandeis.rseg126.SOE;
 /**
  * Written by Louis LeBlanc
  * For Homework Assignment 4
@@ -15,7 +16,6 @@
  * java -cp  dist/lib/SieveOfEratosthenes-20180824.jar edu.brandeis.rseg126.SOE.SieveOfEratosthenes
  * 
  */
-package edu.brandeis.rseg126.SOE;
 
 import java.util.Scanner;
 
@@ -25,8 +25,6 @@ import java.util.Scanner;
  *         bound.
  *
  */
-
-
 
 public class SieveOfEratosthenes {
 
