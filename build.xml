@@ -73,10 +73,13 @@
     <target name="junitreport" depends="SieveOfEratosthenesTest">
     	<echo message="Generating JUnit tests for ${ant.project.name}"/>
         <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
+            <fileset dir="${basedir}">
                 <include name="TEST-*.xml"/>
             </fileset>
             <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
+        <delete>
+          <fileset dir="." includes="TEST-*.xml"/>
+        </delete>
     </target>
 </project>
