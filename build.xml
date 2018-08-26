@@ -58,16 +58,17 @@
             <classpath refid="Sieve Of Eratosthenes.classpath"/>
         </javac>
     </target>
-    <target name="dist" depends="build">
+    <target name="dist" depends="SieveOfEratosthenesTest">
         <echo message="Executing Distribution buid target for ${ant.project.name}"/>
-        <jar jarfile="dist/lib/SNAPSHOT-${DSTAMP}.jar" basedir="bin"/>
+        <jar jarfile="dist/lib/SNAPSHOT-SieveOfEratosthenes-${DSTAMP}.jar" basedir="bin"/>
    </target>
-    <target name="SieveOfEratosthenesTest" depends="dist">
+   <target name="SieveOfEratosthenesTest" depends="build">
         <echo message="Running JUnit tests for ${ant.project.name}"/>
-        <junitlauncher>
+        <junit printsummary="on" haltonerror="on" logfailedtests="true">
+            <formatter type="xml"/>
             <classpath refid="Sieve Of Eratosthenes.classpath"/>
-            <test name="SieveOfEratosthenesTest" methods="testGetUpperBound, testIsPrime" outputDir="${junit.output.dir}"/>
-        </junitlauncher>
+            <test name="SieveOfEratosthenesTest" methods="testGetUpperBound, testIsPrime"/>
+        </junit>
     </target>
     <target name="junitreport">
     	<echo message="Generating JUnit tests for ${ant.project.name}"/>
