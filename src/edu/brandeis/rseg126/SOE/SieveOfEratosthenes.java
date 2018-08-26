@@ -64,7 +64,7 @@ public class SieveOfEratosthenes {
                 System.out.println("");
             }
         }
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("Found " + primeCnt + " prime numbers between 2 and " + this.upperBound);
     }
 
