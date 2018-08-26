@@ -13,7 +13,7 @@ package edu.brandeis.rseg126.SOE;
  * https://www.geeksforgeeks.org/sieve-of-eratosthenes/
  * 
  * Java command to run:
- * java -cp  dist/lib/SieveOfEratosthenes-${DSTAMP}.jar edu.brandeis.rseg126.SOE.SieveOfEratosthenes
+ * java -cp  dist/lib/SieveOfEratosthenes.jar edu.brandeis.rseg126.SOE.SieveOfEratosthenes
  * 
  */
 
@@ -51,11 +51,13 @@ public class SieveOfEratosthenes {
         if (!scanComplete)
             sieveOfEratosthenes(); // Call with defaults ...
         // print prime numbers
+        int primeCnt = 0; // How many primes did we find?
         int cols = 0; // We'll print our primes out in 8 columns
         for (int i = 2; i <= this.upperBound; i++) {
             if (isPrime[i]) {
                 System.out.printf("%8d", i);
                 cols++;
+                primeCnt++;
             }
             if (cols >= 8) {
                 cols = 0;
@@ -63,6 +65,7 @@ public class SieveOfEratosthenes {
             }
         }
         System.out.println("");
+        System.out.println("Found " + primeCnt + " prime numbers between 2 and " + this.upperBound);
     }
 
     /**
@@ -127,6 +130,7 @@ public class SieveOfEratosthenes {
 
         // Take input as a string. We'll then scan it for numerical input
         System.out.print("Provide an upper bound for prime numbers [default: 300]: ");
+        System.out.flush();
         inputStr = s.nextLine(); // allows us to accept empty input
         s.close();
 
