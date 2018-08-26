@@ -81,9 +81,9 @@
         </delete>
     </target>
 	<target name="run" depends="dist">
-		<echo message="Running $jarfile}"/>
-		<echo message="Provide an upper bound for prime numbers [default: 300]: "/>
+		<echo message="Running $jarfile} with the default input (300)"/>
 		<java classname="edu.brandeis.rseg126.SOE.SieveOfEratosthenes"
+			inputstring="300"
 			fork="true"
 			failonerror="true">
 			<classpath>
