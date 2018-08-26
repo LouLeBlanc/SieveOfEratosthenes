@@ -13,7 +13,7 @@ package edu.brandeis.rseg126.SOE;
  * https://www.geeksforgeeks.org/sieve-of-eratosthenes/
  * 
  * Java command to run:
- * java -cp  dist/lib/SieveOfEratosthenes-20180824.jar edu.brandeis.rseg126.SOE.SieveOfEratosthenes
+ * java -cp  dist/lib/SieveOfEratosthenes-${DSTAMP}.jar edu.brandeis.rseg126.SOE.SieveOfEratosthenes
  * 
  */
 
