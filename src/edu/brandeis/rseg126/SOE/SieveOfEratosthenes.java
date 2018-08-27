@@ -148,5 +148,4 @@ public class SieveOfEratosthenes {
         sieve.printPrimes();
     }
 
-
 }
