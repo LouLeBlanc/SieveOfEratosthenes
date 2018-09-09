@@ -31,7 +31,7 @@ public class SieveOfEratosthenesTest {
 
     @Test
     public void testGetUpperBound() {
-        SieveOfEratosthenes sieve = new SieveOfEratosthenes(100);
+        SieveOfEratosthenes sieve = new SieveOfEratosthenes(300);
 
         System.out.println("Verifying that a custom upper bound can be retrieved");
         System.out.println("Expect 100; Got: " + sieve.getUpperBound());
