@@ -58,6 +58,7 @@ public class SieveOfEratosthenes {
                 System.out.printf("%8d", i);
                 cols++;
                 primeCnt++;
+            }
             if (cols >= 8) {
                 cols = 0;
                 System.out.println("");
