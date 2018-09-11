@@ -11,31 +11,33 @@
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.brandeis.rseg126.SOE.SieveOfEratosthenes;
 
 public class SieveOfEratosthenesTest {
+    private SieveOfEratosthenes sieve;
+
+    @Before
+    public void before() {
+      sieve = new SieveOfEratosthenes(100);
+    }
 
     @Test
     public void testIsPrime() {
-        SieveOfEratosthenes sieve = new SieveOfEratosthenes(100);
 
-        System.out.println("Verifying return for out-of-bounds check");
-        assertEquals(-1, sieve.isPrime(200));
-        System.out.println("Verifying return for prime check");
-        assertEquals(1, sieve.isPrime(2));
-        System.out.println("Verifying return for non-prime check");
-        assertEquals(0, sieve.isPrime(10));
+        assertEquals("Falied out-of-bounds check", -1, sieve.isPrime(200));
+        assertEquals("Verifying return for prime check", 1, sieve.isPrime(2));
+        assertEquals("Verifying return for non-prime check", 0, sieve.isPrime(10));
+
     }
 
     @Test
     public void testGetUpperBound() {
-        SieveOfEratosthenes sieve = new SieveOfEratosthenes(100);
 
-        System.out.println("Verifying that a custom upper bound can be retrieved");
-        System.out.println("Expect 100; Got: " + sieve.getUpperBound());
-        assertEquals(100, sieve.getUpperBound());
+        assertEquals("Returned wrong upper bound", 100, sieve.getUpperBound());
+
     }
 
 }
