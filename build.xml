@@ -55,7 +55,12 @@
 
 	<target name="dist" depends="junit">
 		<echo message="Executing Distribution buid target for ${ant.project.name}"/>
-		<jar destfile="${dist.output.dir}/${jarfile}" excludes="*Test.class" basedir="bin"/>
+		<jar destfile="${dist.output.dir}/${jarfile}" excludes="*Test.class" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class"
+					value="edu.brandeis.rseg126.SOE.SieveOfEratosthenes"/>
+			</manifest>
+		</jar>
 	</target>
 
 	<target name="junit" depends="build">
