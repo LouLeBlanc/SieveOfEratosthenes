@@ -14,17 +14,23 @@ Java command to run the sieve:<br>
 <code>$ java -jar  dist/lib/SieveOfEratosthenes.jar</code>
 
 ## Running Ant:
-Targets:<br>
-&nbsp;**clean:** Clean out all derived artifacts.<br>
-&nbsp;**init:**  Create directory structure for other targets.<br>
-&nbsp;**build:** Run Java build. **Depends:** init<br>
-&nbsp;**test:** Execute basic JUnit (4) tests. **Depends:** build<br>
-&nbsp;**junitreport:** Create a JUnit report in HTML format. **Depends:** test<br>
-&nbsp;**dist:** Build the jarfile. **Depends:** test, junitreport<br>
-&nbsp;**run:** Run the sieve. **Depends:** dist<br>
+<table>
+  <tr>Targets:</tr>
+  <tr><td>&nbsp;**build**</td><td>Build the Java classes - **Default**</td></tr>
+  <tr><td>&nbsp;**clean**</td><td>Remove build artifacts from the build environment</td></tr>
+  <tr><td>&nbsp;**dist**</td><td>Build the distribution jar file</td></tr>
+  <tr><td>&nbsp;**docker**</td><td>Wrapper task to build Docker if it is installed</td></tr>
+  <tr><td>&nbsp;**docker-installed**</td><td>Build Docker image if Docker is installed</td></tr>
+  <tr><td>&nbsp;**docker-not-installed**</td><td>Display message if Docker is not installed</td></tr>
+  <tr><td>&nbsp;**init**</td><td>Initialize build environment</td></tr>
+  <tr><td>&nbsp;**junit**</td><td>Run JUnit tests</td></tr>
+  <tr><td>&nbsp;**junitreport**</td><td>Generate JUnit report in HTML format</td></tr>
+  <tr><td>&nbsp;**run**</td><td>Run the jar file</td></tr>
+</table>
+
 
 ## Docker:
-To build a Docker image for this application, execute the following command from the project base directory:<br>
+To build a Docker image for this application (without using the ant build), execute the following command from the project base directory:<br>
 <code>$ docker build -t rseg:sieveoferatosthenes .</code><br>
 The build will take several minutes, but should succeed.
 

@@ -21,6 +21,18 @@
 	<property name="jarfile" value="SieveOfEratosthenes.jar"/>
 	<property name="target" value="1.8"/>
 	<property name="source" value="1.8"/>
+	<property environment="env"/>
+
+	<condition property="docker-available" value="true" else="false">
+		<or>
+			<!-- Check for Docker on Linux -->
+			<available file="docker" type="file" filepath="env.PATH"/>
+			<!-- Check for Docker on Windows !!NOT TESTED!! -->
+			<available file="docker.exe" type="file" filepath="env.PATH"/>
+			<available file="docker.exe" type="file" filepath="env.Path"/>
+			<available file="docker.exe" type="file" filepath="env.path"/>
+		</or>
+	</condition>
 
 	<path id="JUnit 4.libraryclasspath">
 		<pathelement location="lib/junit.jar"/>
@@ -32,20 +44,23 @@
 		<path refid="JUnit 4.libraryclasspath"/>
 	</path>
 
-	<target name="init">
+        <target name="init"
+                description="Initialize build environment">
 		<mkdir dir="bin"/>
 		<mkdir dir="${dist.output.dir}"/>
 		<mkdir dir="${junit.output.dir}"/>
 	</target>
 
-	<target name="clean">
+	<target name="clean"
+                description="Remove build artifacts from the build environment">
 		<echo message="Cleaning ${ant.project.name} build environment"/>
 		<delete dir="bin"/>
 		<delete dir="junit"/>
 		<delete dir="dist"/>
 	</target>
 
-	<target depends="init" name="build">
+	<target depends="init" name="build"
+                description="Build the Java classes">
 		<echo message="Executing Build target for ${ant.project.name}"/>
 		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
 			<src path="src"/>
@@ -53,7 +68,8 @@
 		</javac>
 	</target>
 
-	<target name="dist" depends="junit">
+	<target name="dist" depends="junit"
+                description="Build the distribution jar file">
 		<echo message="Executing Distribution buid target for ${ant.project.name}"/>
 		<jar destfile="${dist.output.dir}/${jarfile}" excludes="*Test.class" basedir="bin">
 			<manifest>
@@ -63,7 +79,8 @@
 		</jar>
 	</target>
 
-	<target name="junit" depends="build">
+	<target name="junit" depends="build"
+                description="Run JUnit tests">
 		<echo message="Running JUnit tests for ${ant.project.name}"/>
 		<junit printsummary="yes" haltonerror="yes" logfailedtests="true">
 			<formatter type="xml"/>
@@ -74,7 +91,8 @@
 		</junit>
 	</target>
 
-	<target name="junitreport" depends="junit">
+	<target name="junitreport" depends="junit"
+                description="Generate JUnit report in HTML format">
 		<echo message="Generating JUnit tests for ${ant.project.name}"/>
 		<junitreport todir="${junit.output.dir}">
 			<fileset dir="${junit.output.dir}">
@@ -84,9 +102,10 @@
 		</junitreport>
 	</target>
 
-	<target name="run" depends="dist">
-		<echo message="Running $jarfile} with the default input (300)"/>
-		<java classname="edu.brandeis.rseg126.SOE.SieveOfEratosthenes"
+	<target name="run" depends="dist"
+                description="Run the jar file">
+          <echo message="Running ${jarfile} with the default input (300)"/>
+	  <java jar="${dist.output.dir}/${jarfile}"
 			inputstring="300"
 			fork="true"
 			failonerror="true">
@@ -96,4 +115,29 @@
 		</java>
 	</target>
 
+        <target name="docker"
+		depends="docker-installed, docker-not-installed"
+		description="Wrapper task to build Docker if it is installed">
+	</target>
+
+	<target name="docker-not-installed"
+		depends="dist"
+		description="Display message if Docker is not installed"
+		unless="docker-available">
+		<echo message="Docker is not available."/>
+		<echo message="Make sure Docker is properly installed and configured and try again."/>
+	</target>
+
+	<target name="docker-installed"
+		depends="dist"
+		description="Build Docker image if Docker is installed"
+		if="docker-available">
+		<echo message="Building docker file"/>
+		<exec executable="docker">
+			<arg value="build"/>
+			<arg value="-t"/>
+			<arg value="rseg:sieveoferatosthenes"/>
+			<arg value="."/>
+		</exec>
+	</target>
 </project>
