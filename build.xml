@@ -136,7 +136,7 @@
 		<exec executable="docker">
 			<arg value="build"/>
 			<arg value="-t"/>
-			<arg value="rseg:sieveoferatosthenes"/>
+			<arg value="rseg126:sieveoferatosthenes"/>
 			<arg value="."/>
 		</exec>
 	</target>
