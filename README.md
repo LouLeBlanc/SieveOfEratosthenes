@@ -31,7 +31,7 @@ Java command to run the sieve:<br>
 
 ## Docker:
 To build a Docker image for this application (without using the ant build), execute the following command from the project base directory:<br>
-<code>$ docker build -t rseg:sieveoferatosthenes .</code><br>
+<code>$ docker build -t rseg126:sieveoferatosthenes .</code><br>
 The build will take several minutes, but should succeed.
 
 To run the image, execute the following:<br>
