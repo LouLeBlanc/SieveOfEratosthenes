@@ -15,17 +15,17 @@ Java command to run the sieve:<br>
 
 ## Running Ant:
 <table>
-  <tr>Targets:</tr>
-  <tr><td>&nbsp;**build**</td><td>Build the Java classes - **Default**</td></tr>
-  <tr><td>&nbsp;**clean**</td><td>Remove build artifacts from the build environment</td></tr>
-  <tr><td>&nbsp;**dist**</td><td>Build the distribution jar file</td></tr>
-  <tr><td>&nbsp;**docker**</td><td>Wrapper task to build Docker if it is installed</td></tr>
-  <tr><td>&nbsp;**docker-installed**</td><td>Build Docker image if Docker is installed</td></tr>
-  <tr><td>&nbsp;**docker-not-installed**</td><td>Display message if Docker is not installed</td></tr>
-  <tr><td>&nbsp;**init**</td><td>Initialize build environment</td></tr>
-  <tr><td>&nbsp;**junit**</td><td>Run JUnit tests</td></tr>
-  <tr><td>&nbsp;**junitreport**</td><td>Generate JUnit report in HTML format</td></tr>
-  <tr><td>&nbsp;**run**</td><td>Run the jar file</td></tr>
+  <tr><strong>Targets:</strong></tr>
+  <tr><td>&nbsp;<strong>build</strong></td><td>Build the Java classes - <strong>Default</strong></td></tr>
+  <tr><td>&nbsp;<strong>clean</strong></td><td>Remove build artifacts from the build environment</td></tr>
+  <tr><td>&nbsp;<strong>dist</strong></td><td>Build the distribution jar file</td></tr>
+  <tr><td>&nbsp;<strong>docker</strong></td><td>Wrapper task to build Docker if it is installed</td></tr>
+  <tr><td>&nbsp;<strong>docker-installed</strong></td><td>Build Docker image if Docker is installed</td></tr>
+  <tr><td>&nbsp;<strong>docker-not-installed</strong></td><td>Display message if Docker is not installed</td></tr>
+  <tr><td>&nbsp;<strong>init</strong></td><td>Initialize build environment</td></tr>
+  <tr><td>&nbsp;<strong>junit</strong></td><td>Run JUnit tests</td></tr>
+  <tr><td>&nbsp;<strong>junitreport</strong></td><td>Generate JUnit report in HTML format</td></tr>
+  <tr><td>&nbsp;<strong>run</strong></td><td>Run the jar file</td></tr>
 </table>
 
 
