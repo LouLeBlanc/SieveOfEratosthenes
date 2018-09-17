@@ -35,7 +35,7 @@ Find the **CONTAINER_ID** by executing<br>
 <code>$ docker container ls</code>
 
 The **IPAddress** associated with the container can be found with the following command:<br>
-<code>$ docker inspect **CONTAINER_ID** | grep &quot;\&lt;IPAddress\\>&quot;</code>
+<code>$ docker inspect **CONTAINER_ID** | grep &quot;\\<IPAddress\\>&quot;</code>
 
 Finally, ssh into the container as user eratosthenes:<br>
 <code>$ ssh eratosthenes@**IPAddress**</code><br>
