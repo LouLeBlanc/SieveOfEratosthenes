@@ -1,0 +1,12 @@
+#/bin/sh
+
+# SieveOfEratosthenes
+# Written by Louis LeBlanc
+# For Homework Assignment 4
+# Dockerized for project 7
+# RSEG-126 - Release Control and Continuous Integration/Continuous Delivery
+# Brandeis University,
+# Instructed by Eric Hemdal
+
+java -jar /usr/share/SieveOfEratosthenes/SieveOfEratosthenes.jar
+

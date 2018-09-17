@@ -1,0 +1,16 @@
+SieveOfEratosthenes
+Written by Louis LeBlanc
+For Homework Assignment 4
+Dockerized for project 7
+RSEG-126 - Release Control and Continuous Integration/Continuous Delivery
+Brandeis University,
+Instructed by Eric Hemdal
+
+
+Welcome to the Sieve Of Eratosthenes Docker application.
+This application will provide you a list of prime numbers up to a specified
+upper bound, and will provide a summary afterward.
+Simple execute the command:
+  SieveOfEratosthenes
+and provide the upper bound for the sieve to work with.
+
