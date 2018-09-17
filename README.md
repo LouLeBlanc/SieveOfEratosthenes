@@ -23,7 +23,7 @@ Targets:<br>
 &nbsp;**dist:** Build the jarfile. **Depends:** test, junitreport<br>
 &nbsp;**run:** Run the sieve. **Depends:** dist<br>
 
-##Docker
+## Docker:
 To build a Docker image for this application, execute the following command from the project base directory:<br>
 <code>$ docker build -t rseg:sieveoferatosthenes .</code><br>
 The build will take several minutes, but should succeed.
