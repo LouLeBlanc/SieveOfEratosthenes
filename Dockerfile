@@ -45,9 +45,6 @@ RUN echo "Match user eratosthenes" >> /etc/ssh/sshd_config
 RUN echo "    PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
 RUN echo "" >> /etc/ssh/sshd_config
 
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
-
 # Push in our files
 RUN mkdir /usr/share/SieveOfEratosthenes
 COPY src/resource/SieveOfEratosthenes /bin/SieveOfEratosthenes
