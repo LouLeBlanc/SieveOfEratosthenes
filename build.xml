@@ -34,6 +34,7 @@
 		</or>
 	</condition>
 
+	<!-- There's a dependency manager (Ivy) we should use for this -->
 	<path id="JUnit 4.libraryclasspath">
 		<pathelement location="lib/junit.jar"/>
 		<pathelement location="lib/hamcrest-core.jar"/>
@@ -44,32 +45,30 @@
 		<path refid="JUnit 4.libraryclasspath"/>
 	</path>
 
-        <target name="init"
-                description="Initialize build environment">
+	<target name="init" description="Initialize build environment">
 		<mkdir dir="bin"/>
 		<mkdir dir="${dist.output.dir}"/>
 		<mkdir dir="${junit.output.dir}"/>
 	</target>
 
 	<target name="clean"
-                description="Remove build artifacts from the build environment">
+		description="Remove build artifacts from the build environment">
 		<echo message="Cleaning ${ant.project.name} build environment"/>
 		<delete dir="bin"/>
 		<delete dir="junit"/>
 		<delete dir="dist"/>
 	</target>
 
-	<target depends="init" name="build"
-                description="Build the Java classes">
+	<target depends="init" name="build" description="Build the Java classes">
 		<echo message="Executing Build target for ${ant.project.name}"/>
-		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin"
+			includeantruntime="false" source="${source}" target="${target}">
 			<src path="src"/>
 			<classpath refid="SieveOfEratosthenes.classpath"/>
 		</javac>
 	</target>
 
-	<target name="dist" depends="junit"
-                description="Build the distribution jar file">
+	<target name="dist" depends="junit" description="Build the distribution jar file">
 		<echo message="Executing Distribution buid target for ${ant.project.name}"/>
 		<jar destfile="${dist.output.dir}/${jarfile}" excludes="*Test.class" basedir="bin">
 			<manifest>
@@ -80,7 +79,7 @@
 	</target>
 
 	<target name="junit" depends="build"
-                description="Run JUnit tests">
+		description="Run JUnit tests">
 		<echo message="Running JUnit tests for ${ant.project.name}"/>
 		<junit printsummary="yes" haltonerror="yes" logfailedtests="true">
 			<formatter type="xml"/>
@@ -92,7 +91,7 @@
 	</target>
 
 	<target name="junitreport" depends="junit"
-                description="Generate JUnit report in HTML format">
+		description="Generate JUnit report in HTML format">
 		<echo message="Generating JUnit tests for ${ant.project.name}"/>
 		<junitreport todir="${junit.output.dir}">
 			<fileset dir="${junit.output.dir}">
@@ -103,9 +102,9 @@
 	</target>
 
 	<target name="run" depends="dist"
-                description="Run the jar file">
-          <echo message="Running ${jarfile} with the default input (300)"/>
-	  <java jar="${dist.output.dir}/${jarfile}"
+		description="Run the jar file">
+		<echo message="Running ${jarfile} with the default input (300)"/>
+		<java jar="${dist.output.dir}/${jarfile}"
 			inputstring="300"
 			fork="true"
 			failonerror="true">
@@ -115,7 +114,7 @@
 		</java>
 	</target>
 
-        <target name="docker"
+	<target name="docker"
 		depends="docker-installed, docker-not-installed"
 		description="Wrapper task to build Docker if it is installed">
 	</target>
